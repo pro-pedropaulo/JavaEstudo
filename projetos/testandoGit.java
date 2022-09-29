@@ -3,12 +3,7 @@ package projetos;
 public class testandoGit {
 
     public static void main(String[] args) {
-        System.out.println("Testando Git");
-
-        for (int i = 1; i <= 100; i+=2) {
-            System.out.println(i);
-        }
-        System.out.println("Fim do programa");
+        System.out.println("que sa fouda el palmeiras");
     }
 }
 
