@@ -2,19 +2,19 @@ package application;
 
 import java.util.Locale;
 
-import negocios.PI;
+import negocios.Pi;
 
-public class staticPI {
+public class staticPi {
     public static void main(String[] args) throws Exception {
         Locale.setDefault(Locale.US);
         int Radio = 3;
 
-        double circunferencia = PI.circunferencia(Radio);
-        double volume = PI.volume(Radio);
+        double circunferencia = Pi.circunferencia(Radio);
+        double volume = Pi.volume(Radio);
 
         System.out.printf("Circunferencia: %.2f%n", circunferencia);
         System.out.printf("Volume: %.2f%n", volume);
-        System.out.printf("Valor de PI: %.2f%n", PI.PI);
+        System.out.printf("Valor de PI: %.2f%n", Pi.PI);
 
     }
     

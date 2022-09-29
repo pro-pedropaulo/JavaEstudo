@@ -1,6 +1,6 @@
 package negocios;
 
-public class PI {
+public class Pi {
 
     public static final double PI = 3.14159; {
     }
