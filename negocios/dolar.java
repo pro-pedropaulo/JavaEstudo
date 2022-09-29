@@ -1,6 +1,6 @@
 package negocios;
 
-public class dolar {
+public class Dolar {
 
     public static double valorDolar = 5.10; {
 

@@ -1,6 +1,6 @@
 public class switchDiaSemana {
     public static void main(String[] args) throws Exception {
-        int dia = 6;
+        int dia = 4;
 
         switch (dia) {
             case 1:
