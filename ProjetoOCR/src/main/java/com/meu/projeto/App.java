@@ -34,7 +34,7 @@ public class App {
     public static void main(String[] args) {
         try {
             File folder = new File("C:\\testeImagem\\");
-            File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".png"));
+            File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".png") || name.toLowerCase().endsWith(".PNG"));
 
             if (files == null || files.length == 0) {
                 System.out.println("Nenhum arquivo PNG encontrado na pasta.");
