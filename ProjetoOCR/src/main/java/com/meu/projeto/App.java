@@ -59,12 +59,22 @@ public class App {
             // Adicionar o conteúdo OCR como texto invisível nas posições específicas
             TransparentColor invisibleColor = new TransparentColor(new DeviceRgb(0, 0, 0), 0);
             for (Word word : words) {
-                Rectangle rect = new Rectangle((float) word.getBoundingBox().getX(), (float) (pdfDocument.getFirstPage().getPageSize().getHeight() - word.getBoundingBox().getY() - word.getBoundingBox().getHeight()), (float) word.getBoundingBox().getWidth(), (float) word.getBoundingBox().getHeight());
-                Text text = new Text(word.getText()).setFontSize((float) word.getBoundingBox().getHeight());
+                float wordHeight = (float) word.getBoundingBox().getHeight();
+                Rectangle rect = new Rectangle((float) word.getBoundingBox().getX(), (float) (pdfDocument.getFirstPage().getPageSize().getHeight() - word.getBoundingBox().getY() - wordHeight), (float) word.getBoundingBox().getWidth(), wordHeight);
+                Text text = new Text(word.getText()).setFontSize(wordHeight);
                 text.setProperty(Property.FONT_COLOR, invisibleColor);
                 text.setProperty(Property.STROKE_COLOR, invisibleColor);
-                new Canvas(new PdfCanvas(pdfDocument.getFirstPage()), pdfDocument, rect).add(new Paragraph(text));
+                Paragraph paragraph = new Paragraph(text);
+                paragraph.setMarginTop(-wordHeight *- 0.35f); // Ajuste a proporção conforme necessário
+                paragraph.setFixedLeading(wordHeight);
+                paragraph.setMultipliedLeading(0);
+
+                new Canvas(new PdfCanvas(pdfDocument.getFirstPage()), pdfDocument, rect).add(paragraph);
             }
+
+
+
+
 
             pdfDocument.close();
 
@@ -73,3 +83,5 @@ public class App {
         }
     }
 }
+
+
