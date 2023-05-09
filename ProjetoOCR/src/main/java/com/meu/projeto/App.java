@@ -7,6 +7,8 @@ import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.layout.Canvas;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
+import com.itextpdf.layout.property.Property;
+import com.itextpdf.layout.property.TransparentColor;
 import net.sourceforge.tess4j.ITessAPI;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
@@ -54,10 +56,13 @@ public class App {
             PdfWriter writer = new PdfWriter(outputPdf);
             PdfDocument pdfDocument = new PdfDocument(reader, writer);
 
-            // Adicionar o conteúdo OCR como texto transparente nas posições específicas
+            // Adicionar o conteúdo OCR como texto invisível nas posições específicas
+            TransparentColor invisibleColor = new TransparentColor(new DeviceRgb(0, 0, 0), 0);
             for (Word word : words) {
                 Rectangle rect = new Rectangle((float) word.getBoundingBox().getX(), (float) (pdfDocument.getFirstPage().getPageSize().getHeight() - word.getBoundingBox().getY() - word.getBoundingBox().getHeight()), (float) word.getBoundingBox().getWidth(), (float) word.getBoundingBox().getHeight());
-                Text text = new Text(word.getText()).setFontColor(new DeviceRgb(255, 255, 255)).setFontSize((float) word.getBoundingBox().getHeight());
+                Text text = new Text(word.getText()).setFontSize((float) word.getBoundingBox().getHeight());
+                text.setProperty(Property.FONT_COLOR, invisibleColor);
+                text.setProperty(Property.STROKE_COLOR, invisibleColor);
                 new Canvas(new PdfCanvas(pdfDocument.getFirstPage()), pdfDocument, rect).add(new Paragraph(text));
             }
 
