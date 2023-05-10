@@ -38,6 +38,7 @@
       <groupId>com.itextpdf</groupId>
       <artifactId>itext7-core</artifactId>
       <version>7.1.16</version>
+      <type>pom</type>
     </dependency>
   </dependencies>
   <repositories>
@@ -60,6 +61,19 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
     </plugins>
